@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  background: #121212;
+  font-family: 'Borel', cursive;
+}
+
+:root {
+  --cor-agua-1: #60a5fa; /* bg-blue-400 */
+  --cor-agua-2: #06b6d4; /* bg-cyan-500 */
+
+  --cor-fogo-1: #f97316; /* bg-orange-500 */
+  --cor-fogo-2: #ef4444; /* bg-red-500 */
+
+  --cor-terra-1: #16a34a; /* bg-green-700 */
+  --cor-terra-2: #7c4a24; /* bg-brown-600 ou bg-gray-700 */
+
+  --cor-ar-1: #a855f7; /* bg-purple-400 */
+  --cor-ar-2: #ec4899; /* bg-pink-400 */
+}
+
+/* Adicione este código no seu arquivo CSS (por exemplo, index.css) */
+
+.slick-dots {
+  bottom: -30px; /* Ajusta a posição dos dots, se necessário */
+}
+
+.slick-dots li button {
+  background-color: #ffffff; /* Cor dos dots inativos */
+  opacity: 0.6; /* Opacidade padrão dos dots */
+  border: none; /* Remove borda padrão */
+  width: 10px; /* Largura do dot */
+  height: 10px; /* Altura do dot */
+  border-radius: 50%; /* Forma circular */
+}
+
+.slick-dots li.slick-active button {
+  background-color: #ff4081; /* Cor do dot ativo */
+  opacity: 1; /* Opacidade do dot ativo */
+}
+
+/* Estilo para o hover */
+.slick-dots li button:hover {
+  background-color: #ff4081; /* Cor ao passar o mouse sobre os dots */
+  opacity: 1; /* Opacidade ao passar o mouse */
+}
+
+/* Defina as setas para usar a cor pink-500 do Tailwind */
+.slick-prev:before,
+.slick-next:before {
+  color: #ec4899; /* Essa é a cor pink-500 em Tailwind */
+}
