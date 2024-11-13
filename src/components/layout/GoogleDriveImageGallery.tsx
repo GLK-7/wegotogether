@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import { config } from '../../../config.ts';
 
-const API_KEY = 'AIzaSyBMwNQLvwRxiCRDd_sWVAiDeVVzzgJz2uQ';
-const FOLDER_ID = '1ouAcJJRMROWCPr1xTyPz2nUzcB4HerFT'; // Substitua pelo ID da pasta do Google Drive
+const API_KEY = config.API_KEY;
+const FOLDER_ID = config.FOLDER_ID;
 
 const GoogleDriveImageGallery: React.FC = () => {
   const [images, setImages] = useState<string[]>([]);
