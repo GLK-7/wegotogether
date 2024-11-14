@@ -26,13 +26,9 @@ const Home: React.FC = () => {
 
       {/* Carrossel de Fotos */}
       <Section title="Our Moments" id="moments">
-        <PhotoCarousel photos={photos} />
+        <PhotoCarousel />
       </Section>
-
-      <Section title="Our Moments" id="wemoments">
-        <GoogleDriveImageGallery />
-      </Section>
-
+      
       {/* Música do Spotify */}
       <Section title="Our Song" id="song">
         <SpotifyMusic trackUrl={trackUrl} />

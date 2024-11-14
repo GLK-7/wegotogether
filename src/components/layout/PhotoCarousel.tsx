@@ -1,10 +1,13 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Section from './Section';
+import { config } from '../../../config.ts';
 
-const PhotoCarousel: React.FC<{ photos: string[] }> = ({ photos }) => {
+const API_KEY = config.API_KEY || import.meta.env.VITE_API_KEY
+const FOLDER_ID = config.FOLDER_ID || import.meta.env.VITE_FOLDER_ID
+
+const PhotoCarousel: React.FC = () => {
   const settings = {
     dots: true,
     infinite: true,
@@ -30,11 +33,32 @@ const PhotoCarousel: React.FC<{ photos: string[] }> = ({ photos }) => {
       },
     ],
   };
+  const [images, setImages] = useState<string[]>([]);
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await fetch(
+          `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents+and+mimeType+contains+'image/'&key=${API_KEY}&fields=files(id,name)`
+        );
+        const data = await response.json();
+
+        // Transformar o id em link direto de exibição
+        const imageUrls = data.files.map(
+          (file: any) => `https://drive.google.com/uc?id=${file.id}`
+        );
+        setImages(imageUrls);
+      } catch (error) {
+        console.error('Erro ao buscar imagens do Google Drive:', error);
+      }
+    };
+
+    fetchImages();
+  }, []);
 
   return (
     <div className=" rounded p-4 pb-10">
       <Slider {...settings}>
-        {photos.map((photo, index) => (
+        {images.map((photo, index) => (
           <div
             key={index}
             className="flex justify-center items-center h-[500px] p-2"
