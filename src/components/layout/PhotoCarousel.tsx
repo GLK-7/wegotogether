@@ -31,7 +31,7 @@ const PhotoCarousel: React.FC = () => {
 
         // Use thumbnailLink se estiver disponível, caso contrário, use o link padrão
         const imageUrls = data.files.map(
-          (file: any) => file.webContentLink  || `https://drive.google.com/uc?id=${file.id}`
+          (file: any) => `https://drive.google.com/u/0/uc?id=${file.id}`
         );
         setImages(imageUrls);
       } catch (error) {
