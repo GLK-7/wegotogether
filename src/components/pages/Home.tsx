@@ -36,6 +36,8 @@ const Home: React.FC = () => {
       <Section title="Our Timeline" id="timeline">
         <Timeline2 events={timelineEvents} />
       </Section>
+
+      <img src="https://drive.google.com/uc?id=1pSlGfqqnbnXDgS6pi7GWgRgXLqtDD8GY" alt="teste" />
     </div>
   );
 };
