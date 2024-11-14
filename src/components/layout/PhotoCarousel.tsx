@@ -31,7 +31,7 @@ const PhotoCarousel: React.FC = () => {
 
         // Use thumbnailLink se estiver disponível, caso contrário, use o link padrão
         const imageUrls = data.files.map(
-          (file: any) => file.thumbnailLink || `https://drive.google.com/uc?id=${file.id}`
+          (file: any) => file.webContentLink  || `https://drive.google.com/uc?id=${file.id}`
         );
         setImages(imageUrls);
       } catch (error) {
@@ -46,7 +46,7 @@ const PhotoCarousel: React.FC = () => {
     <div className="rounded p-4 pb-10">
       <Slider {...settings}>
         {images.map((photo, index) => (
-          <div key={index} className="flex justify-center items-center h-[300px] p-2">
+          <div key={index} className="flex justify-center items-center h-[400px] p-2">
             <img src={photo} alt={`Foto ${index}`} className="rounded-md w-full h-full object-cover" />
           </div>
         ))}

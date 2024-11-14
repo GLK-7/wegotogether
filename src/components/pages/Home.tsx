@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="gap-12 flex flex-col px-4 space-y-20 text-white rounded-lg shadow-lg w-full pt-32 mb-12">
+    <div className="gap-2 flex flex-col px-4 space-y-20 text-white rounded-lg shadow-lg w-full pt-24 mb-12">
       {/* Contador de Namoro */}
       <Section title="Our Time Together" id="time">
         <Countdown2 startDate={startDate} />
