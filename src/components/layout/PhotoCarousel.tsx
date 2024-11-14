@@ -3,10 +3,14 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const API_KEY = import.meta.env.VITE_API_KEY;
-const FOLDER_ID = import.meta.env.VITE_FOLDER_ID;
+interface Props {
+  folderId: string;
+  height: string
+}
 
-const PhotoCarousel: React.FC = () => {
+const API_KEY = import.meta.env.VITE_API_KEY;
+
+const PhotoCarousel = ({folderId, height}: Props) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -25,13 +29,13 @@ const PhotoCarousel: React.FC = () => {
     const fetchImages = async () => {
       try {
         const response = await fetch(
-          `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents+and+mimeType+contains+'image/'&key=${API_KEY}&fields=files(id,name,thumbnailLink)`
+          `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&key=${API_KEY}&fields=files(id,name,thumbnailLink)`
         );
         const data = await response.json();
 
         // Use thumbnailLink se estiver disponível, caso contrário, use o link padrão
         const imageUrls = data.files.map(
-          (file: any) => `https://drive.google.com/thumbnail?id=${file.id}&sz=s1000`
+          (file: any) => file.thumbnailLink || `https://drive.google.com/thumbnail?id=${file.id}&sz=s1000`
         );
         setImages(imageUrls);
       } catch (error) {
@@ -46,8 +50,8 @@ const PhotoCarousel: React.FC = () => {
     <div className="rounded p-4 pb-10">
       <Slider {...settings}>
         {images.map((photo, index) => (
-          <div key={index} className="flex justify-center items-center h-[400px] p-2">
-            <img src={photo} alt={`Foto ${index}`} className="rounded-md w-full h-full object-cover" />
+          <div key={index} className={`flex justify-center items-center h-[${height}] p-2`}>
+            <img src={photo} alt={`Foto ${index}`} className={`rounded-md w-full h-full object-cover`} />
           </div>
         ))}
       </Slider>
