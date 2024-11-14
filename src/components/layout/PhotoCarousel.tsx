@@ -2,10 +2,9 @@ import {useState, useEffect} from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { config } from '../../../config.ts';
 
-const API_KEY = config.API_KEY || import.meta.env.VITE_API_KEY
-const FOLDER_ID = config.FOLDER_ID || import.meta.env.VITE_FOLDER_ID
+const API_KEY =  import.meta.env.VITE_API_KEY
+const FOLDER_ID =  import.meta.env.VITE_FOLDER_ID
 
 const PhotoCarousel: React.FC = () => {
   const settings = {

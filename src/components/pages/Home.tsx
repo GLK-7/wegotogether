@@ -4,11 +4,9 @@ import PhotoCarousel from './../layout/PhotoCarousel';
 import SpotifyMusic from './../layout/SpotifyMusic';
 import Timeline2 from './../layout/Timeline2';
 import Section from '../layout/Section';
-import GoogleDriveImageGallery from '../layout/GoogleDriveImageGallery';
 
 const Home: React.FC = () => {
   const startDate = new Date('2023-06-27');
-  const photos = ['./public/1.jpg', './public/2.jpg', './public/3.png'];
   const trackUrl =
     'https://open.spotify.com/embed/track/0SccFtYdj75y6lL2OW10Cf?utm_source=generator';
   const timelineEvents = [
@@ -28,7 +26,7 @@ const Home: React.FC = () => {
       <Section title="Our Moments" id="moments">
         <PhotoCarousel />
       </Section>
-      
+
       {/* Música do Spotify */}
       <Section title="Our Song" id="song">
         <SpotifyMusic trackUrl={trackUrl} />
