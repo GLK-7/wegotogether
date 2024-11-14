@@ -6,6 +6,8 @@ import 'slick-carousel/slick/slick-theme.css';
 const API_KEY =  import.meta.env.VITE_API_KEY
 const FOLDER_ID =  import.meta.env.VITE_FOLDER_ID
 
+console.log(FOLDER_ID)
+
 const PhotoCarousel: React.FC = () => {
   const settings = {
     dots: true,
