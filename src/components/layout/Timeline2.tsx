@@ -3,14 +3,6 @@ import React from 'react';
 const Timeline2: React.FC<{
   events: { date: string; description: string }[];
 }> = ({ events }) => {
-  // Função para formatar a data no padrão DD/MM/YYYY
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Adiciona 1 ao mês, pois começa em 0
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
 
   return (
     <div className="relative w-full bg-[#1e1e1e] py-6 px-4 min-h-96">
@@ -19,7 +11,7 @@ const Timeline2: React.FC<{
         <div key={index} className="flex justify-between mb-6 relative">
           <div className="flex-1 text-right pr-4 h-12 py-2">
             <span className="sm:text-xl font-bold text-purple-500">
-              {formatDate(event.date)}
+              {event.date}
             </span>
           </div>
           <div className="flex-1 text-left pl-4">

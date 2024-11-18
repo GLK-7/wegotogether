@@ -11,9 +11,9 @@ const Home: React.FC = () => {
   const trackUrl =
     'https://open.spotify.com/embed/track/0SccFtYdj75y6lL2OW10Cf?utm_source=generator';
   const timelineEvents = [
-    { date: '2023-06-27', description: 'Nos conhecemos' },
-    { date: '2023-07-01', description: 'Primeiro encontro' },
-    { date: '2023-07-31', description: 'Namoro' },
+    { date: '27/06/2023', description: 'Nos conhecemos' },
+    { date: '01/07/2023', description: 'Primeiro encontro' },
+    { date: '30/07/2023', description: 'Namoro' },
   ];
 
   return (
