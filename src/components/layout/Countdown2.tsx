@@ -19,7 +19,7 @@ const Countdown: React.FC<{ startDate: Date }> = ({ startDate }) => {
   const days = Math.floor(totalDays % 30.44); // Dias restantes
   const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((time % (1000 * 60)) / 1000);
+  {/*const seconds = Math.floor((time % (1000 * 60)) / 1000);*/}
 
   return (
     <div className="flex flex-col items-center rounded-lg">
