@@ -17,7 +17,6 @@ const Travels: React.FC = () => {
   ];
 
   const timelineRef = useRef<HTMLDivElement>(null); // Referência para o container da timeline
-  const [lineHeight, setLineHeight] = useState(0); // Estado para a altura da linha
 
   useEffect(() => {
     if (timelineRef.current) {
@@ -36,18 +35,18 @@ const Travels: React.FC = () => {
   }, [travelsData]);
 
   return (
-    <div className="relative pl-8 flex items-center pt-4 justify-center">
-      <div className="relative w-full bg-[#1e1e1e] py-0 m-0 pl-4 pr-4" ref={timelineRef}>
-        {/* Linha dinâmica */}
+    <div className="relative flex items-center pt-4 justify-center">
+      <div className="relative w-full bg-[#1e1e1e] py-0 m-0" ref={timelineRef}>
+        {/* Linha dinâmica 
         <div
           className="absolute left-[-10px] border-l border-2 border-purple-500"
           style={{ height: lineHeight }}
-        />
+        />*/}
         {travelsData.map((event, index) => (
-          <div key={index} className="flex flex-col w-full mb-12 relative">
-            {/* Dot */}
-            <div className="dot absolute rounded-full bg-purple-500 h-6 w-6 ml-[-36.6px] border-2 border-[#1e1e1e]"></div>
-            <div className="flex gap-4">
+          <div key={index} className="flex flex-col w-full mb-6 relative">
+            {/* Dot 
+            <div className="dot absolute rounded-full bg-purple-500 h-6 w-6 ml-[-36.6px] border-2 border-[#1e1e1e]"></div>*/}
+            <div className="flex flex-wrap md:gap-4 gap-2 w-full px-4">
               {/* Título */}
               <div className="flex flex-row">
                 <MapPin size={28} weight="fill" color="#a855f7" />
