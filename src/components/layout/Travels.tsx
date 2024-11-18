@@ -34,7 +34,7 @@ const Travels: React.FC = () => {
             <div className="flex flex-wrap md:gap-4 gap-2 w-full px-4">
               {/* Título */}
               <div className="flex flex-row">
-                <MapPin size={28} weight="fill" color="#a855f7" />
+                <MapPin className="md:h-7 h-6 w-auto" weight="fill" color="#a855f7" />
                 <span
                   className="ml-1 sm:text-xl text-base bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500 font-semibold drop-shadow-lg h-21 py-1.5"
                 >
@@ -43,7 +43,7 @@ const Travels: React.FC = () => {
               </div>
               {/* Data */}
               <div className="flex flex-row">
-                <CalendarDots size={28} weight="fill" color="#ec4899" />
+                <CalendarDots className="md:h-7 h-6 w-auto" weight="fill" color="#ec4899" />
                 <span
                   className="ml-1 sm:text-xl text-base bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500 font-semibold drop-shadow-lg h-21 py-1.5"
                 >
