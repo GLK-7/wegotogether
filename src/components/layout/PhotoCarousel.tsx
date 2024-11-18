@@ -35,7 +35,7 @@ const PhotoCarousel = ({folderId, height}: Props) => {
 
         // Use thumbnailLink se estiver disponível, caso contrário, use o link padrão
         const imageUrls = data.files.map(
-          (file: any) => file.thumbnailLink || `https://drive.google.com/thumbnail?id=${file.id}&sz=s1000`
+          (file: any) => `https://drive.google.com/thumbnail?id=${file.id}&sz=s1000`
         );
         setImages(imageUrls);
       } catch (error) {
@@ -51,7 +51,7 @@ const PhotoCarousel = ({folderId, height}: Props) => {
       <Slider {...settings}>
         {images.map((photo, index) => (
           <div key={index} className={`flex justify-center items-center h-[${height}] p-2`}>
-            <img src={photo} alt={`Foto ${index}`} className={`rounded-md w-full h-full object-cover`} />
+            <img src={photo} alt={`Foto ${index}`} className={`rounded-md w-full h-[400px] object-cover`} />
           </div>
         ))}
       </Slider>
