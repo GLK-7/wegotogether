@@ -4,6 +4,7 @@ import PhotoCarousel from './../layout/PhotoCarousel';
 import SpotifyMusic from './../layout/SpotifyMusic';
 import Timeline2 from './../layout/Timeline2';
 import Section from '../layout/Section';
+import Travels from '../layout/Travels';
 
 const Home: React.FC = () => {
   const startDate = new Date('2023-06-27');
@@ -24,7 +25,12 @@ const Home: React.FC = () => {
 
       {/* Carrossel de Fotos */}
       <Section title="Our Moments" id="moments">
-        <PhotoCarousel />
+        <PhotoCarousel folderId="1ouAcJJRMROWCPr1xTyPz2nUzcB4HerFT" height='400px'/>
+      </Section>
+
+      {/* Carrossel de Fotos Timeline */}
+      <Section title="Our Travels" id="travels">
+        <Travels/>
       </Section>
 
       {/* Música do Spotify */}
