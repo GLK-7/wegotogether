@@ -35,7 +35,7 @@ const PhotoCarousel = ({folderId, height}: Props) => {
 
         // Use thumbnailLink se estiver disponível, caso contrário, use o link padrão
         const imageUrls = data.files.map(
-          (file: any) => `https://drive.google.com/thumbnail?id=${file.id}&sz=s1000`
+          (file: any) => file.thumbnailLink || `https://drive.google.com/thumbnail?id=${file.id}&sz=s1000`
         );
         setImages(imageUrls);
       } catch (error) {
