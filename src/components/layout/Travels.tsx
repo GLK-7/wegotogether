@@ -1,4 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react';
 import PhotoCarousel from "./PhotoCarousel";
 import { MapPin, CalendarDots } from '@phosphor-icons/react';
 
@@ -16,27 +15,13 @@ const Travels: React.FC = () => {
     }
   ];
 
-  const timelineRef = useRef<HTMLDivElement>(null); // Referência para o container da timeline
 
-  useEffect(() => {
-    if (timelineRef.current) {
-      // Obter todos os elementos filhos com a classe 'dot'
-      const dots = timelineRef.current.querySelectorAll('.dot');
-      if (dots.length > 0) {
-        const firstDot = dots[0].getBoundingClientRect();
-        const lastDot = dots[dots.length - 1].getBoundingClientRect();
-        
 
-        // Calcular altura total da linha
-        const height = lastDot.top - firstDot.top + lastDot.height / 2;
-        setLineHeight(height);
-      }
-    }
-  }, [travelsData]);
+
 
   return (
     <div className="relative flex items-center pt-4 justify-center">
-      <div className="relative w-full bg-[#1e1e1e] py-0 m-0" ref={timelineRef}>
+      <div className="relative w-full bg-[#1e1e1e] py-0 m-0">
         {/* Linha dinâmica 
         <div
           className="absolute left-[-10px] border-l border-2 border-purple-500"
