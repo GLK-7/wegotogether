@@ -12,6 +12,16 @@ const Travels: React.FC = () => {
       title: 'Guaratuba - PR',
       folderId: '1rnaHbLrBn4xvYiofKmiu0o3qxvcOmz8j',
       date: '08/01/2024',
+    },
+    {
+      title: 'Maragogi - AL',
+      folderId: '1ru9QzEQM76d7GdVNDCPTUmP4HUw3zcHF',
+      date: '07/12/2024',
+    },
+    {
+      title: 'Curitiba - PR',
+      folderId: '1i-HH4jIKlI3efG2qRKL7qtSX8Gu1wrNk',
+      date: '20/12/2024',
     }
   ];
 
