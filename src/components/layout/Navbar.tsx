@@ -31,7 +31,6 @@ const Navbar = () => {
           {/* Logo / brand */}
           <span
             className="gradient-text font-semibold text-base sm:text-lg tracking-wide hidden sm:block"
-            style={{ fontFamily: "'Playfair Display', serif" }}
           >
             ♡ WeGo Together
           </span>

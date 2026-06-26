@@ -49,7 +49,6 @@ const Travels: React.FC = () => {
                 <MapPin weight="fill" className="text-purple-400 w-4 h-4 flex-shrink-0" />
                 <span
                   className="gradient-text font-semibold text-base sm:text-lg truncate"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
                 >
                   {travel.title}
                 </span>

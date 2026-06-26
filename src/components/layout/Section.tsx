@@ -13,7 +13,6 @@ const Section = ({ title, children, id }: Props) => {
           <div className="flex flex-col items-center gap-3">
             <h2
               className="gradient-text text-2xl sm:text-3xl md:text-4xl font-bold text-center"
-              style={{ fontFamily: "'Playfair Display', serif" }}
             >
               {title}
             </h2>

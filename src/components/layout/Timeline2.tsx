@@ -38,7 +38,6 @@ const Timeline2: React.FC<{
                 </span>
                 <p
                   className="text-base sm:text-lg md:text-xl font-semibold gradient-text"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
                 >
                   {event.description}
                 </p>
