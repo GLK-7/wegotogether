@@ -1,71 +1,80 @@
-import PhotoCarousel from "./PhotoCarousel";
+import PhotoCarousel from './PhotoCarousel';
 import { MapPin, CalendarDots } from '@phosphor-icons/react';
 
+const travelsData = [
+  {
+    title: 'Dourados - MS',
+    folderId: '1rJ2U2EaNat7l7q-s3hTeksp0fWLfHQkb',
+    date: '06/01/2024',
+    emoji: '🌿',
+  },
+  {
+    title: 'Guaratuba - PR',
+    folderId: '1rnaHbLrBn4xvYiofKmiu0o3qxvcOmz8j',
+    date: '08/01/2024',
+    emoji: '🌊',
+  },
+  {
+    title: 'Maragogi - AL',
+    folderId: '1ru9QzEQM76d7GdVNDCPTUmP4HUw3zcHF',
+    date: '07/12/2024',
+    emoji: '🏖️',
+  },
+  {
+    title: 'Curitiba - PR',
+    folderId: '1i-HH4jIKlI3efG2qRKL7qtSX8Gu1wrNk',
+    date: '20/12/2024',
+    emoji: '🌲',
+  },
+];
+
 const Travels: React.FC = () => {
-  const travelsData = [
-    {
-      title: 'Dourados - MS',
-      folderId: '1rJ2U2EaNat7l7q-s3hTeksp0fWLfHQkb',
-      date: '06/01/2024',
-    },
-    {
-      title: 'Guaratuba - PR',
-      folderId: '1rnaHbLrBn4xvYiofKmiu0o3qxvcOmz8j',
-      date: '08/01/2024',
-    },
-    {
-      title: 'Maragogi - AL',
-      folderId: '1ru9QzEQM76d7GdVNDCPTUmP4HUw3zcHF',
-      date: '07/12/2024',
-    },
-    {
-      title: 'Curitiba - PR',
-      folderId: '1i-HH4jIKlI3efG2qRKL7qtSX8Gu1wrNk',
-      date: '20/12/2024',
-    }
-  ];
-
-
-
-
-
   return (
-    <div className="relative flex items-center pt-4 justify-center">
-      <div className="relative w-full bg-[#1e1e1e] py-0 m-0">
-        {/* Linha dinâmica 
-        <div
-          className="absolute left-[-10px] border-l border-2 border-purple-500"
-          style={{ height: lineHeight }}
-        />*/}
-        {travelsData.map((event, index) => (
-          <div key={index} className="flex flex-col w-full mb-6 relative">
-            {/* Dot 
-            <div className="dot absolute rounded-full bg-purple-500 h-6 w-6 ml-[-36.6px] border-2 border-[#1e1e1e]"></div>*/}
-            <div className="flex flex-wrap md:gap-4 gap-2 w-full px-4">
-              {/* Título */}
-              <div className="flex flex-row">
-                <MapPin className="md:h-7 h-6 w-auto" weight="fill" color="#a855f7" />
+    <div className="flex flex-col gap-10 py-2">
+      {travelsData.map((travel, index) => (
+        <div key={index} className="flex flex-col gap-4">
+          {/* Card header */}
+          <div className="flex items-center gap-4 px-2">
+            {/* Index badge */}
+            <div className="relative flex-shrink-0">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 blur-md opacity-40" />
+              <div className="relative w-10 h-10 rounded-full animated-gradient flex items-center justify-center text-lg shadow-lg">
+                {travel.emoji}
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 min-w-0">
+              {/* Destination */}
+              <div className="flex items-center gap-1.5 min-w-0">
+                <MapPin weight="fill" className="text-purple-400 w-4 h-4 flex-shrink-0" />
                 <span
-                  className="ml-1 sm:text-xl text-base bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500 font-semibold drop-shadow-lg h-21 py-1.5"
+                  className="gradient-text font-semibold text-base sm:text-lg truncate"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
                 >
-                  {event.title}
+                  {travel.title}
                 </span>
               </div>
-              {/* Data */}
-              <div className="flex flex-row">
-                <CalendarDots className="md:h-7 h-6 w-auto" weight="fill" color="#ec4899" />
-                <span
-                  className="ml-1 sm:text-xl text-base bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500 font-semibold drop-shadow-lg h-21 py-1.5"
-                >
-                  {event.date}
+
+              {/* Separator dot */}
+              <span className="hidden sm:block text-gray-600">•</span>
+
+              {/* Date */}
+              <div className="flex items-center gap-1.5">
+                <CalendarDots weight="fill" className="text-pink-400 w-4 h-4 flex-shrink-0" />
+                <span className="text-gray-400 text-sm font-medium">
+                  {travel.date}
                 </span>
               </div>
             </div>
-            {/* Carrossel */}
-            <PhotoCarousel folderId={event.folderId} height="400px" />
           </div>
-        ))}
-      </div>
+
+          {/* Separator line */}
+          <div className="h-px bg-gradient-to-r from-purple-500/30 via-pink-500/30 to-transparent mx-2" />
+
+          {/* Carousel */}
+          <PhotoCarousel folderId={travel.folderId} height="300px" />
+        </div>
+      ))}
     </div>
   );
 };

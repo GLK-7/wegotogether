@@ -5,25 +5,29 @@ import 'slick-carousel/slick/slick-theme.css';
 
 interface Props {
   folderId: string;
-  height: string
+  height: string;
 }
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const PhotoCarousel = ({folderId, height}: Props) => {
+const PhotoCarousel = ({ folderId }: Props) => {
+  const [images, setImages] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 600,
     slidesToShow: 3,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 1 } },
-      { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+      { breakpoint: 640, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
   };
-
-  const [images, setImages] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -32,26 +36,45 @@ const PhotoCarousel = ({folderId, height}: Props) => {
           `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&key=${API_KEY}&fields=files(id,name,thumbnailLink)`
         );
         const data = await response.json();
-
-        // Use thumbnailLink se estiver disponível, caso contrário, use o link padrão
         const imageUrls = data.files.map(
-          (file: any) => `https://drive.google.com/thumbnail?id=${file.id}&sz=s1000`
+          (file: { id: string }) =>
+            `https://drive.google.com/thumbnail?id=${file.id}&sz=s1000`
         );
         setImages(imageUrls);
       } catch (error) {
         console.error('Erro ao buscar imagens do Google Drive:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchImages();
-  }, []);
+  }, [folderId]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-48 gap-3">
+        <div className="w-2 h-2 rounded-full bg-purple-400 animate-bounce [animation-delay:-0.3s]" />
+        <div className="w-2 h-2 rounded-full bg-pink-400 animate-bounce [animation-delay:-0.15s]" />
+        <div className="w-2 h-2 rounded-full bg-purple-400 animate-bounce" />
+      </div>
+    );
+  }
 
   return (
-    <div className="rounded p-4 pb-10">
+    <div className="py-2 pb-10">
       <Slider {...settings}>
         {images.map((photo, index) => (
-          <div key={index} className={`flex justify-center items-center h-[${height}] p-2`}>
-            <img src={photo} alt={`Foto ${index}`} className={`rounded-md w-full h-[400px] object-cover`} />
+          <div key={index} className="px-2">
+            <div className="relative group overflow-hidden rounded-xl">
+              <img
+                src={photo}
+                alt={`Foto ${index + 1}`}
+                className="w-full h-52 sm:h-64 md:h-72 object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
+              />
+              {/* Hover overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
+            </div>
           </div>
         ))}
       </Slider>

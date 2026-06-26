@@ -17,33 +17,48 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="gap-2 flex flex-col px-4 space-y-20 text-white rounded-lg shadow-lg w-full pt-24 mb-12">
-      {/* Contador de Namoro */}
-      <Section title="Our Time Together" id="time">
-        <Countdown2 startDate={startDate} />
-      </Section>
+    <main className="w-full min-h-screen bg-[#0d0d0f]">
+      {/* Subtle background texture */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-purple-900/10 blur-[120px]" />
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-pink-900/10 blur-[120px]" />
+      </div>
 
-      {/* Carrossel de Fotos */}
-      <Section title="Our Moments" id="moments">
-        <PhotoCarousel folderId="1ouAcJJRMROWCPr1xTyPz2nUzcB4HerFT" height='400px'/>
-      </Section>
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 pt-12 pb-20 flex flex-col gap-10">
+        {/* Time Together */}
+        <Section title="Our Time Together" id="time">
+          <Countdown2 startDate={startDate} />
+        </Section>
 
-      {/* Carrossel de Fotos Timeline */}
-      <Section title="Our Travels" id="travels">
-        <Travels/>
-      </Section>
+        {/* Moments */}
+        <Section title="Our Moments" id="moments">
+          <PhotoCarousel folderId="1ouAcJJRMROWCPr1xTyPz2nUzcB4HerFT" height="400px" />
+        </Section>
 
-      {/* Música do Spotify */}
-      <Section title="Our Song" id="song">
-        <SpotifyMusic trackUrl={trackUrl} />
-      </Section>
+        {/* Travels */}
+        <Section title="Our Travels" id="travels">
+          <Travels />
+        </Section>
 
-      {/* Linha do Tempo */}
-      <Section title="Our Timeline" id="timeline">
-        <Timeline2 events={timelineEvents} />
-      </Section>
+        {/* Song */}
+        <Section title="Our Song" id="song">
+          <SpotifyMusic trackUrl={trackUrl} />
+        </Section>
 
-    </div>
+        {/* Timeline */}
+        <Section title="Our Timeline" id="timeline">
+          <Timeline2 events={timelineEvents} />
+        </Section>
+
+        {/* Footer */}
+        <footer className="flex flex-col items-center gap-2 pt-6">
+          <div className="heartbeat text-2xl select-none">💕</div>
+          <p className="text-gray-600 text-xs tracking-widest uppercase font-light">
+            feito com amor
+          </p>
+        </footer>
+      </div>
+    </main>
   );
 };
 

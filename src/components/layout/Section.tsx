@@ -6,16 +6,26 @@ interface Props {
 
 const Section = ({ title, children, id }: Props) => {
   return (
-    <section className="pt-16" id={id}>
-      <div className="flex justify-center w-full">
-        <div className="mx-auto p-1 rounded-lg w-full shadow-lg bg-[#1e1e1e] flex flex-col">
-          <div className="mx-6">
-            <div className="w-full flex items-center justify-center border-b-4 border-pink-500 mb-4">
-              <h1 className="text-2xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-b from-purple-500 to-pink-500 drop-shadow-lg pt-8 mt-2">
-                {title}
-              </h1>
+    <section className="scroll-mt-20" id={id}>
+      <div className="glass-card rounded-2xl overflow-hidden shadow-2xl">
+        {/* Section header */}
+        <div className="px-6 pt-8 pb-6">
+          <div className="flex flex-col items-center gap-3">
+            <h2
+              className="gradient-text text-2xl sm:text-3xl md:text-4xl font-bold text-center"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              {title}
+            </h2>
+            {/* Ornamental divider */}
+            <div className="divider-ornament w-full max-w-xs">
+              <span className="text-pink-400/60 text-base">♡</span>
             </div>
           </div>
+        </div>
+
+        {/* Content */}
+        <div className="pb-8 px-4 sm:px-6">
           {children}
         </div>
       </div>

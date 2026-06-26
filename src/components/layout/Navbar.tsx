@@ -1,116 +1,106 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+const navLinks = [
+  { href: '#time', label: 'Time Together', icon: '⏳' },
+  { href: '#moments', label: 'Moments', icon: '📸' },
+  { href: '#travels', label: 'Travels', icon: '✈️' },
+  { href: '#song', label: 'Our Song', icon: '🎵' },
+  { href: '#timeline', label: 'Timeline', icon: '💫' },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav className="bg-gradient-to-b from-[#c74ade] to-[#a855f7] py-4 sticky top-0 z-50 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-end items-center">
-          {/* Botão de hambúrguer para dispositivos móveis */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-[#] focus:outline-none"
-            >
-              <svg
-                className="w-6 h-6 text-[#1e1e1e]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d={
-                    isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'
-                  }
-                />
-              </svg>
-            </button>
-          </div>
+    <nav
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-[#0d0d0f]/90 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/30'
+          : 'bg-[#0d0d0f]/70 backdrop-blur-md border-b border-white/5'
+      }`}
+    >
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-14 sm:h-16">
+          {/* Logo / brand */}
+          <span
+            className="gradient-text font-semibold text-base sm:text-lg tracking-wide hidden sm:block"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            ♡ WeGo Together
+          </span>
 
-          {/* Links de navegação para desktop centralizados */}
-          <ul className="hidden md:flex justify-center flex-1 space-x-4">
-            <li>
-              <a
-                href="#time"
-                className="text-[#] font-bold transition duration-300 ease-in-out hover:text-[#fff] hover:bg-white/10 px-4 py-2 rounded"
-              >
-                Time Together
-              </a>
-            </li>
-            <li>
-              <a
-                href="#moments"
-                className="text-[#] font-bold transition duration-300 ease-in-out hover:text-[#fff] hover:bg-white/10 px-4 py-2 rounded"
-              >
-                Moments
-              </a>
-            </li>
-            <li>
-              <a
-                href="#song"
-                className="text-[#] font-bold transition duration-300 ease-in-out hover:text-[#fff] hover:bg-white/10 px-4 py-2 rounded"
-              >
-                Song
-              </a>
-            </li>
-            <li>
-              <a
-                href="#timeline"
-                className="text-[#] font-bold transition duration-300 ease-in-out hover:text-[#fff] hover:bg-white/10 px-4 py-2 rounded"
-              >
-                Timeline
-              </a>
-            </li>
+          {/* Desktop links */}
+          <ul className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="relative px-4 py-2 rounded-full text-sm font-medium text-gray-300 hover:text-white transition-all duration-200 hover:bg-white/5 group"
+                >
+                  <span className="mr-1.5 opacity-70 group-hover:opacity-100 transition-opacity">
+                    {link.icon}
+                  </span>
+                  {link.label}
+                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 group-hover:w-3/4 transition-all duration-300" />
+                </a>
+              </li>
+            ))}
           </ul>
-        </div>
 
-        {/* Menu de hambúrguer para dispositivos móveis */}
-        {isOpen && (
-          <>
-            <ul
-              className="md:hidden flex flex-col justify-center flex-wrap items-center gap-2"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <li>
-                <a
-                  href="#time"
-                  className="text-[#] font-bold transition duration-300 ease-in-out hover:text-[#fff] hover:bg-white/10 px-4 py-2 rounded"
-                >
-                  Time Together
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#moments"
-                  className="text-[#] font-bold transition duration-300 ease-in-out hover:text-[#fff] hover:bg-white/10 px-4 py-2 rounded"
-                >
-                  Moments
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#song"
-                  className="text-[#] font-bold transition duration-300 ease-in-out hover:text-[#fff] hover:bg-white/10 px-4 py-2 rounded"
-                >
-                  Song
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#timeline"
-                  className="text-[#] font-bold transition duration-300 ease-in-out hover:text-[#fff] hover:bg-white/10 px-4 py-2 rounded"
-                >
-                  Timeline
-                </a>
-              </li>
-            </ul>
-          </>
-        )}
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/5 transition-colors"
+            aria-label="Toggle menu"
+          >
+            <span
+              className={`block w-5 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full transition-all duration-300 ${
+                isOpen ? 'rotate-45 translate-y-2' : ''
+              }`}
+            />
+            <span
+              className={`block w-5 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full transition-all duration-300 ${
+                isOpen ? 'opacity-0' : ''
+              }`}
+            />
+            <span
+              className={`block w-5 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full transition-all duration-300 ${
+                isOpen ? '-rotate-45 -translate-y-2' : ''
+              }`}
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          isOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <ul
+          className="flex flex-col py-2 px-4 gap-1 border-t border-white/5"
+          onClick={() => setIsOpen(false)}
+        >
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-200"
+              >
+                <span>{link.icon}</span>
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </nav>
   );

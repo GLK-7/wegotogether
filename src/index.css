@@ -2,56 +2,186 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Borel&display=swap');
+
+:root {
+  --pink: #ec4899;
+  --pink-light: #f472b6;
+  --pink-dark: #be185d;
+  --purple: #a855f7;
+  --purple-light: #c084fc;
+  --purple-dark: #7c3aed;
+  --bg-base: #0d0d0f;
+  --bg-card: #161618;
+  --bg-elevated: #1e1e22;
+  --text-primary: #f8f4ff;
+  --text-muted: #9ca3af;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body,
 html {
   padding: 0;
   margin: 0;
-  background: #121212;
-  font-family: 'Borel', cursive;
+  background: var(--bg-base);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
 }
 
-:root {
-  --cor-agua-1: #60a5fa; /* bg-blue-400 */
-  --cor-agua-2: #06b6d4; /* bg-cyan-500 */
-
-  --cor-fogo-1: #f97316; /* bg-orange-500 */
-  --cor-fogo-2: #ef4444; /* bg-red-500 */
-
-  --cor-terra-1: #16a34a; /* bg-green-700 */
-  --cor-terra-2: #7c4a24; /* bg-brown-600 ou bg-gray-700 */
-
-  --cor-ar-1: #a855f7; /* bg-purple-400 */
-  --cor-ar-2: #ec4899; /* bg-pink-400 */
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--purple), var(--pink));
+  border-radius: 3px;
 }
 
-/* Adicione este código no seu arquivo CSS (por exemplo, index.css) */
+/* Glow utilities */
+.glow-pink {
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.3), 0 0 40px rgba(236, 72, 153, 0.1);
+}
+.glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), 0 0 40px rgba(168, 85, 247, 0.1);
+}
+.glow-text {
+  text-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+}
 
+/* Glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--purple-light), var(--pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated gradient background */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, #7c3aed, #a855f7, #ec4899, #be185d);
+  background-size: 300% 300%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Pulse animation for heart */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.15); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  70% { transform: scale(1); }
+}
+.heartbeat {
+  animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+.float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Fade in up */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up {
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+/* Shine effect */
+@keyframes shine {
+  from { background-position: -200% center; }
+  to { background-position: 200% center; }
+}
+
+/* ---- Slick carousel ---- */
 .slick-dots {
-  bottom: -30px; /* Ajusta a posição dos dots, se necessário */
+  bottom: -28px;
 }
 
-.slick-dots li button {
-  background-color: #ffffff; /* Cor dos dots inativos */
-  opacity: 0.6; /* Opacidade padrão dos dots */
-  border: none; /* Remove borda padrão */
-  width: 10px; /* Largura do dot */
-  height: 10px; /* Altura do dot */
-  border-radius: 50%; /* Forma circular */
+.slick-dots li button:before {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 10px;
+  opacity: 1;
 }
 
-.slick-dots li.slick-active button {
-  background-color: #ff4081; /* Cor do dot ativo */
-  opacity: 1; /* Opacidade do dot ativo */
+.slick-dots li.slick-active button:before {
+  color: var(--pink);
+  opacity: 1;
 }
 
-/* Estilo para o hover */
-.slick-dots li button:hover {
-  background-color: #ff4081; /* Cor ao passar o mouse sobre os dots */
-  opacity: 1; /* Opacidade ao passar o mouse */
+.slick-dots li button:hover:before {
+  color: var(--pink-light);
+  opacity: 1;
 }
 
-/* Defina as setas para usar a cor pink-500 do Tailwind */
 .slick-prev:before,
 .slick-next:before {
-  color: #ec4899; /* Essa é a cor pink-500 em Tailwind */
+  color: var(--pink);
+  font-size: 20px;
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+}
+
+.slick-prev {
+  left: 4px;
+}
+
+.slick-next {
+  right: 4px;
+}
+
+/* Divider ornament */
+.divider-ornament {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+.divider-ornament::before,
+.divider-ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(168, 85, 247, 0.4));
+}
+.divider-ornament::after {
+  background: linear-gradient(to left, transparent, rgba(236, 72, 153, 0.4));
 }
